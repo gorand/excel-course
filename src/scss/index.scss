@@ -1,5 +1,30 @@
-$bg: yellow;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import '~normalize.css';
+
+@import 'header';
+@import 'toolbar';
+@import 'table';
+@import 'formula';
+@import 'dashboard';
+
+$bg: #ddec61;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 12px;
     background-color: $bg;
+}
+
+.excel {
+    position: relative;
+    color: #888;
+    height: 100%;
+    max-width: 100%;
+    font-size: 0.8rem;
 }
