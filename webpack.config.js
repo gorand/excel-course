@@ -90,8 +90,9 @@ module.exports = {
     devtool: isDev ? 'source-map' : false,
     devServer: {
         port: 3030,
-        hot: isDev,
+        hot: true,
         open: true,
     },
+    target: isDev ? 'web' : 'browserslist',
     plugins,
 };
