@@ -1,12 +1,14 @@
 import { ExcelComponent } from '@core/ExcelComponent';
 import { createTable } from './table.tempate';
+import { resizeHandler } from './table.resize';
+import { shouldResize } from './table.functions';
 
 export class Table extends ExcelComponent {
     static className = 'excel__table';
 
     constructor($root) {
         super($root, {
-            listeners: ['mousedown', 'mousemove'],
+            listeners: ['mousedown'],
         });
     }
 
@@ -15,22 +17,8 @@ export class Table extends ExcelComponent {
     }
 
     onMousedown(event) {
-        const { resize } = event.target.dataset;
-
-        if (resize === 'col') {
-            const column = event.target.parentNode;
-            const rect = column.getBoundingClientRect();
-            this.onMousemove(event);
-        }
-    }
-
-    onMousemove(event) {
-        const { resize } = event.target.dataset;
-
-        if (resize === 'col') {
-            const column = event.target.parentNode;
-            const rect = column.getBoundingClientRect();
-            column.style.width = `${event.clientX - rect.x + 4}px`;
+        if (shouldResize) {
+            resizeHandler(this.$root, event);
         }
     }
 }
